@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightPath Initiative - Transforming Lives Together</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c5f2d;
+            --primary-dark: #1a3a1b;
+            --accent: #ff6b35;
+            --accent-light: #ff8c5f;
+            --neutral-100: #f8f9fa;
+            --neutral-200: #e9ecef;
+            --neutral-800: #212529;
+            --neutral-600: #495057;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: var(--neutral-800);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.5rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--neutral-800);
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .btn-donate-nav {
+            background: var(--accent);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-donate-nav:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, rgba(44, 95, 45, 0.95), rgba(44, 95, 45, 0.85)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23e9ecef" width="1200" height="600"/><path fill="%23dee2e6" d="M0 300L50 283.3C100 266.7 200 233.3 300 216.7C400 200 500 200 600 216.7C700 233.3 800 266.7 900 283.3C1000 300 1100 300 1150 300L1200 300L1200 601L1150 601C1100 601 1000 601 900 601C800 601 700 601 600 601C500 601 400 601 300 601C200 601 100 601 50 601L0 601Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 8rem 2rem 6rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--neutral-100);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            display: none;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--neutral-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Impact Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--neutral-600);
+            font-size: 1.1rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '🤝';
+            position: absolute;
+            font-size: 10rem;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.3;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--neutral-600);
+            line-height: 1.8;
+        }
+
+        .values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .value-item h4 {
+            color: var(--primary);
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Causes Grid */
+        .causes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .cause-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .cause-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .cause-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+
+        .cause-content {
+            padding: 2rem;
+        }
+
+        .cause-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .cause-content p {
+            color: var(--neutral-600);
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-container {
+            margin-bottom: 1rem;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--neutral-600);
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: var(--neutral-200);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            transition: width 1.5s ease;
+            width: 0;
+        }
+
+        .progress-fill.animate {
+            animation: progressAnimation 1.5s ease forwards;
+        }
+
+        /* Testimonials */
+        .testimonials-carousel {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .testimonial {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+
+        .testimonial.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        .testimonial-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--neutral-600);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .carousel-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--neutral-200);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-btn.active {
+            background: var(--primary);
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        /* Donate Section */
+        .donate-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+
+        .donation-amounts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .amount-btn {
+            padding: 1.5rem;
+            border: 2px solid var(--neutral-200);
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .amount-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .amount-btn.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .custom-amount {
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--neutral-800);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--neutral-200);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-group input {
+            width: auto;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-details p {
+            color: var(--neutral-600);
+        }
+
+        /* Volunteer Form */
+        .volunteer-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes progressAnimation {
+            to { width: var(--progress-width); }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .about-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .donation-amounts {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid #c3e6cb;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">❤️</div>
+                <span>BrightPath Initiative</span>
+            </div>
+            <ul class="nav-links">
+                <li><a onclick="showSection('home')" class="active">Home</a></li>
+                <li><a onclick="showSection('about')">About Us</a></li>
+                <li><a onclick="showSection('causes')">Causes</a></li>
+                <li><a onclick="showSection('impact')">Impact</a></li>
+                <li><a onclick="showSection('volunteer')">Volunteer</a></li>
+                <li><a onclick="showSection('contact')">Contact</a></li>
+            </ul>
+            <a class="btn-donate-nav" onclick="showSection('donate')">Donate Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Building Hope, Changing Lives</h1>
+        <p>Together, we can create lasting change in communities around the world. Your support transforms lives.</p>
+        <div class="hero-buttons">
+            <a class="btn btn-primary" onclick="showSection('donate')">Make a Difference</a>
+            <a class="btn btn-secondary" onclick="showSection('about')">Learn More</a>
+        </div>
+    </div>
+
+    <!-- Home Section -->
+    <section id="home" class="active">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🌍</div>
+                    <div class="stat-number" data-target="50000">0</div>
+                    <div class="stat-label">Lives Impacted</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏫</div>
+                    <div class="stat-number" data-target="125">0</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🤝</div>
+                    <div class="stat-number" data-target="2500">0</div>
+                    <div class="stat-label">Active Volunteers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-number" data-target="5">0</div>
+                    <div class="stat-label">Million Raised</div>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 5rem;">
+                <h2>What People Say</h2>
+                <p>Hear from those whose lives have been touched by our work</p>
+            </div>
+
+            <div class="testimonials-carousel">
+                <div class="testimonial active">
+                    <div class="testimonial-image">👩</div>
+                    <p class="testimonial-text">"BrightPath Initiative gave my children access to education they never had before. Now my daughter dreams of becoming a teacher. This organization doesn't just help - they transform entire futures."</p>
+                    <p class="testimonial-author">Maria Santos, Parent</p>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-image">👨</div>
+                    <p class="testimonial-text">"Volunteering with BrightPath Initiative has been the most rewarding experience of my life. Seeing the direct impact of our work in communities motivates me every single day."</p>
+                    <p class="testimonial-author">James Chen, Volunteer</p>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-image">👵</div>
+                    <p class="testimonial-text">"The clean water project changed everything for our village. We no longer walk miles for water, and our children are healthier. Thank you for caring about us."</p>
+                    <p class="testimonial-author">Amara Okafor, Community Leader</p>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn active" onclick="showTestimonial(0)"></button>
+                    <button class="carousel-btn" onclick="showTestimonial(1)"></button>
+                    <button class="carousel-btn" onclick="showTestimonial(2)"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image"></div>
+                <div class="about-text">
+                    <h3>Our Story</h3>
+                    <p>Founded in 2010, BrightPath Initiative was born from a simple belief: every person deserves access to basic necessities, education, and opportunity.</p>
+                    <p>What started as a small grassroots initiative has grown into a global movement, reaching over 50,000 individuals across 15 countries. We work directly with communities to identify their needs and develop sustainable solutions.</p>
+                    <p>Our approach is collaborative, empowering, and designed for lasting impact. We don't just provide aid - we build capacity, transfer knowledge, and create pathways for communities to thrive independently.</p>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 5rem;">
+                <h2>Our Core Values</h2>
+            </div>
+
+            <div class="values">
+                <div class="value-item">
+                    <div style="font-size: 3rem;">💙</div>
+                    <h4>Compassion</h4>
+                    <p>We lead with empathy and understanding in every action</p>
+                </div>
+                <div class="value-item">
+                    <div style="font-size: 3rem;">🎯</div>
+                    <h4>Impact</h4>
+                    <p>Measurable, sustainable change drives everything we do</p>
+                </div>
+                <div class="value-item">
+                    <div style="font-size: 3rem;">🤝</div>
+                    <h4>Partnership</h4>
+                    <p>We collaborate with communities, not for them</p>
+                </div>
+                <div class="value-item">
+                    <div style="font-size: 3rem;">✨</div>
+                    <h4>Transparency</h4>
+                    <p>Every dollar is tracked and every impact is measured</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Causes Section -->
+    <section id="causes">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Active Causes</h2>
+                <p>Your contribution directly supports these life-changing initiatives</p>
+            </div>
+
+            <div class="causes-grid">
+                <div class="cause-card">
+                    <div class="cause-image">📚</div>
+                    <div class="cause-content">
+                        <h3>Education for All</h3>
+                        <p>Building schools and providing educational resources to underserved communities in rural areas.</p>
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>$78,500 raised</span>
+                                <span>$100,000 goal</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="78.5"></div>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary" style="width: 100%; text-align: center; margin-top: 1rem;" onclick="showSection('donate')">Support This Cause</a>
+                    </div>
+                </div>
+
+                <div class="cause-card">
+                    <div class="cause-image">💧</div>
+                    <div class="cause-content">
+                        <h3>Clean Water Access</h3>
+                        <p>Installing sustainable water systems to provide clean drinking water to remote villages.</p>
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>$52,300 raised</span>
+                                <span>$75,000 goal</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="69.7"></div>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary" style="width: 100%; text-align: center; margin-top: 1rem;" onclick="showSection('donate')">Support This Cause</a>
+                    </div>
+                </div>
+
+                <div class="cause-card">
+                    <div class="cause-image">🏥</div>
+                    <div class="cause-content">
+                        <h3>Healthcare Outreach</h3>
+                        <p>Mobile clinics and medical supplies for communities lacking access to basic healthcare.</p>
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>$91,200 raised</span>
+                                <span>$120,000 goal</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="76"></div>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary" style="width: 100%; text-align: center; margin-top: 1rem;" onclick="showSection('donate')">Support This Cause</a>
+                    </div>
+                </div>
+
+                <div class="cause-card">
+                    <div class="cause-image">🌱</div>
+                    <div class="cause-content">
+                        <h3>Sustainable Agriculture</h3>
+                        <p>Teaching modern farming techniques and providing seeds to promote food security.</p>
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>$43,800 raised</span>
+                                <span>$60,000 goal</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="73"></div>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary" style="width: 100%; text-align: center; margin-top: 1rem;" onclick="showSection('donate')">Support This Cause</a>
+                    </div>
+                </div>
+
+                <div class="cause-card">
+                    <div class="cause-image">👩‍💼</div>
+                    <div class="cause-content">
+                        <h3>Women's Empowerment</h3>
+                        <p>Vocational training and microloans to help women achieve economic independence.</p>
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>$67,900 raised</span>
+                                <span>$85,000 goal</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="79.9"></div>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary" style="width: 100%; text-align: center; margin-top: 1rem;" onclick="showSection('donate')">Support This Cause</a>
+                    </div>
+                </div>
+
+                <div class="cause-card">
+                    <div class="cause-image">🏠</div>
+                    <div class="cause-content">
+                        <h3>Emergency Relief</h3>
+                        <p>Rapid response aid for communities affected by natural disasters and crises.</p>
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>$112,500 raised</span>
+                                <span>$150,000 goal</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="75"></div>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary" style="width: 100%; text-align: center; margin-top: 1rem;" onclick="showSection('donate')">Support This Cause</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Impact</h2>
+                <p>Transparency and accountability in everything we do</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👨‍🎓</div>
+                    <div class="stat-number" data-target="12500">0</div>
+                    <div class="stat-label">Students Educated</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏘️</div>
+                    <div class="stat-number" data-target="87">0</div>
+                    <div class="stat-label">Communities Served</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💉</div>
+                    <div class="stat-number" data-target="35000">0</div>
+                    <div class="stat-label">Medical Treatments</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🚰</div>
+                    <div class="stat-number" data-target="42">0</div>
+                    <div class="stat-label">Water Wells Built</div>
+                </div>
+            </div>
+
+            <div style="max-width: 800px; margin: 5rem auto; background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 5px 25px rgba(0,0,0,0.1);">
+                <h3 style="color: var(--primary); margin-bottom: 2rem; text-align: center;">How We Use Your Donations</h3>
+                <div style="margin-bottom: 2rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span style="font-weight: 600;">Program Services</span>
+                        <span style="color: var(--primary); font-weight: bold;">85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="85"></div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 2rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span style="font-weight: 600;">Administrative</span>
+                        <span style="color: var(--primary); font-weight: bold;">10%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="10"></div>
+                    </div>
+                </div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span style="font-weight: 600;">Fundraising</span>
+                        <span style="color: var(--primary); font-weight: bold;">5%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="5"></div>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem; color: var(--neutral-600); text-align: center;">
+                    We're proud that 85 cents of every dollar goes directly to program services, ensuring maximum impact for your contribution.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Section -->
+    <section id="volunteer">
+        <div class="container">
+            <div class="section-header">
+                <h2>Become a Volunteer</h2>
+                <p>Join our community of changemakers and make a hands-on difference</p>
+            </div>
+
+            <div class="volunteer-form">
+                <div class="success-message" id="volunteerSuccess">
+                    Thank you for your interest! We'll contact you within 48 hours.
+                </div>
+                <form onsubmit="submitVolunteerForm(event)">
+                    <div class="form-group">
+                        <label for="vName">Full Name *</label>
+                        <input type="text" id="vName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vEmail">Email Address *</label>
+                        <input type="email" id="vEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vPhone">Phone Number *</label>
+                        <input type="tel" id="vPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vLocation">Location/City *</label>
+                        <input type="text" id="vLocation" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vInterest">Area of Interest *</label>
+                        <select id="vInterest" required>
+                            <option value="">Select an area</option>
+                            <option value="education">Education Programs</option>
+                            <option value="healthcare">Healthcare Outreach</option>
+                            <option value="water">Clean Water Projects</option>
+                            <option value="agriculture">Sustainable Agriculture</option>
+                            <option value="women">Women's Empowerment</option>
+                            <option value="emergency">Emergency Relief</option>
+                            <option value="fundraising">Fundraising & Events</option>
+                            <option value="admin">Administrative Support</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="vAvailability">Availability *</label>
+                        <select id="vAvailability" required>
+                            <option value="">Select availability</option>
+                            <option value="weekends">Weekends Only</option>
+                            <option value="weekdays">Weekdays</option>
+                            <option value="flexible">Flexible</option>
+                            <option value="summer">Summer Break</option>
+                            <option value="occasional">Occasional Events</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="vExperience">Relevant Experience/Skills</label>
+                        <textarea id="vExperience" rows="4" placeholder="Tell us about any relevant experience or skills you have..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="vMotivation">Why do you want to volunteer with us? *</label>
+                        <textarea id="vMotivation" rows="4" required placeholder="Share what motivates you to volunteer..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donate Section -->
+    <section id="donate">
+        <div class="container">
+            <div class="section-header">
+                <h2>Make a Donation</h2>
+                <p>Every contribution, no matter the size, makes a real difference</p>
+            </div>
+
+            <div class="donate-container">
+                <div class="success-message" id="donateSuccess">
+                    Thank you for your generous donation! You'll receive a confirmation email shortly.
+                </div>
+                <form onsubmit="submitDonation(event)">
+                    <div class="donation-amounts">
+                        <button type="button" class="amount-btn" onclick="selectAmount(25)">$25</button>
+                        <button type="button" class="amount-btn" onclick="selectAmount(50)">$50</button>
+                        <button type="button" class="amount-btn" onclick="selectAmount(100)">$100</button>
+                        <button type="button" class="amount-btn" onclick="selectAmount(250)">$250</button>
+                        <button type="button" class="amount-btn" onclick="selectAmount(500)">$500</button>
+                        <button type="button" class="amount-btn" onclick="selectAmount(1000)">$1000</button>
+                    </div>
+
+                    <div class="custom-amount">
+                        <div class="form-group">
+                            <label for="customAmount">Or enter a custom amount</label>
+                            <input type="number" id="customAmount" placeholder="Enter amount" min="1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cause">Direct my donation to:</label>
+                        <select id="cause">
+                            <option value="general">Where needed most</option>
+                            <option value="education">Education for All</option>
+                            <option value="water">Clean Water Access</option>
+                            <option value="healthcare">Healthcare Outreach</option>
+                            <option value="agriculture">Sustainable Agriculture</option>
+                            <option value="women">Women's Empowerment</option>
+                            <option value="emergency">Emergency Relief</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donorName">Full Name *</label>
+                        <input type="text" id="donorName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donorEmail">Email Address *</label>
+                        <input type="email" id="donorEmail" required>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="monthly">
+                        <label for="monthly">Make this a monthly donation</label>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="anonymous">
+                        <label for="anonymous">Make my donation anonymous</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1.2rem;">Complete Donation</button>
+
+                    <p style="text-align: center; margin-top: 1.5rem; color: var(--neutral-600); font-size: 0.9rem;">
+                        🔒 Your donation is secure and tax-deductible
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>We'd love to hear from you</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h4>Our Address</h4>
+                            <p>123 Hope Street<br>Philanthropy District<br>Global City, GC 10001</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567<br>Mon-Fri: 9AM - 6PM</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>info@brightpathinitiative.org<br>volunteer@brightpathinitiative.org</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">💼</a>
+                    </div>
+                </div>
+
+                <div>
+                    <div style="background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 5px 25px rgba(0,0,0,0.1);">
+                        <div class="success-message" id="contactSuccess">
+                            Message sent successfully! We'll respond within 24 hours.
+                        </div>
+                        <form onsubmit="submitContact(event)">
+                            <div class="form-group">
+                                <label for="contactName">Name *</label>
+                                <input type="text" id="contactName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Email *</label>
+                                <input type="email" id="contactEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactSubject">Subject *</label>
+                                <input type="text" id="contactSubject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactMessage">Message *</label>
+                                <textarea id="contactMessage" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>BrightPath Initiative</h3>
+                <p>Building hope and changing lives since 2010. Together, we create lasting positive change in communities worldwide.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">📘</a>
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">📷</a>
+                    <a href="#" class="social-link">💼</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a onclick="showSection('about')">About Us</a>
+                <a onclick="showSection('causes')">Our Causes</a>
+                <a onclick="showSection('impact')">Our Impact</a>
+                <a onclick="showSection('volunteer')">Volunteer</a>
+                <a onclick="showSection('donate')">Donate</a>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <a href="#">Annual Reports</a>
+                <a href="#">Financial Statements</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Stay updated with our latest projects and impact stories.</p>
+                <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                    <input type="email" placeholder="Your email" style="flex: 1; padding: 0.7rem; border: none; border-radius: 5px;">
+                    <button class="btn btn-primary" style="padding: 0.7rem 1.5rem;">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 BrightPath Initiative. All rights reserved. | Tax ID: 12-3456789</p>
+        </div>
+    </footer>
+
+    <!-- Load form handler script for AJAX submissions -->
+    <script src="js/form-handler.js"></script>
+    
+    <script>
+        // Track selected donation amount
+        let selectedAmount = 0;
+        
+        // Navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target?.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Animate stats if impact section
+            if (sectionId === 'impact' || sectionId === 'home') {
+                animateStats();
+            }
+            
+            // Animate progress bars if causes section
+            if (sectionId === 'causes') {
+                animateProgressBars();
+            }
+        }
+
+        // Sticky navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Animate statistics
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const updateNumber = () => {
+                    current += increment;
+                    if (current < target) {
+                        stat.textContent = Math.floor(current).toLocaleString();
+                        requestAnimationFrame(updateNumber);
+                    } else {
+                        stat.textContent = target.toLocaleString();
+                    }
+                };
+                
+                stat.textContent = '0';
+                updateNumber();
+            });
+        }
+
+        // Animate progress bars
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const progress = bar.getAttribute('data-progress');
+                bar.style.setProperty('--progress-width', progress + '%');
+                setTimeout(() => {
+                    bar.style.width = progress + '%';
+                }, 100);
+            });
+        }
+
+        // Testimonials carousel
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+        const carouselBtns = document.querySelectorAll('.carousel-btn');
+
+        function showTestimonial(index) {
+            testimonials.forEach(t => t.classList.remove('active'));
+            carouselBtns.forEach(btn => btn.classList.remove('active'));
+            
+            testimonials[index].classList.add('active');
+            carouselBtns[index].classList.add('active');
+            currentTestimonial = index;
+        }
+
+        // Auto-rotate testimonials
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000);
+
+        // Donation amount selection
+        let selectedAmount = 0;
+
+        function selectAmount(amount) {
+            selectedAmount = amount;
+            document.querySelectorAll('.amount-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+            document.getElementById('customAmount').value = '';
+        }
+
+        document.getElementById('customAmount')?.addEventListener('input', (e) => {
+            if (e.target.value) {
+                document.querySelectorAll('.amount-btn').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                selectedAmount = parseInt(e.target.value);
+            }
+        });
+
+        // Form submissions
+        function submitDonation(e) {
+            e.preventDefault();
+            const amount = selectedAmount || parseInt(document.getElementById('customAmount').value);
+            
+            if (!amount || amount < 1) {
+                alert('Please select or enter a donation amount');
+                return;
+            }
+            
+            document.getElementById('donateSuccess').classList.add('show');
+            e.target.reset();
+            document.querySelectorAll('.amount-btn').forEach(btn => btn.classList.remove('selected'));
+            
+            setTimeout(() => {
+                document.getElementById('donateSuccess').classList.remove('show');
+            }, 5000);
+        }
+
+        function submitVolunteerForm(e) {
+            e.preventDefault();
+            document.getElementById('volunteerSuccess').classList.add('show');
+            e.target.reset();
+            
+            setTimeout(() => {
+                document.getElementById('volunteerSuccess').classList.remove('show');
+            }, 5000);
+        }
+
+        function submitContact(e) {
+            e.preventDefault();
+            document.getElementById('contactSuccess').classList.add('show');
+            e.target.reset();
+            
+            setTimeout(() => {
+                document.getElementById('contactSuccess').classList.remove('show');
+            }, 5000);
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            animateStats();
+            animateProgressBars();
+        });
+    </script>
+</body>
+</html>

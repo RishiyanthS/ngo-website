@@ -1,0 +1,166 @@
+[
+  {
+    "name": "index.html",
+    "type": "Single Page Application",
+    "description": "Main website with all pages (Home, About, Causes, Impact, Donate, Volunteer, Contact) integrated as sections",
+    "features": [
+      "Responsive design for all devices",
+      "Smooth page transitions with JavaScript navigation",
+      "Animated statistics counters",
+      "Testimonials slider with auto-rotation",
+      "Donation progress bars for causes",
+      "Contact forms with validation"
+    ]
+  },
+  {
+    "name": "backend/config.php",
+    "type": "Backend Configuration",
+    "description": "Database connection, helper functions, and security utilities",
+    "features": [
+      "Database connection management",
+      "Input sanitization functions",
+      "Email validation and sending",
+      "JSON response utilities",
+      "Error handling"
+    ]
+  },
+  {
+    "name": "backend/submit_donation.php",
+    "type": "API Endpoint",
+    "description": "Handles donation form submissions and stores in database",
+    "features": [
+      "Validates donator information",
+      "Stores donation with transaction ID",
+      "Sends confirmation email to donor",
+      "Notifies admin of new donation",
+      "Updates donation statistics"
+    ]
+  },
+  {
+    "name": "backend/submit_volunteer.php",
+    "type": "API Endpoint",
+    "description": "Processes volunteer registration applications",
+    "features": [
+      "Validates applicant information",
+      "Checks for duplicate emails",
+      "Stores application with pending status",
+      "Sends acceptance email to applicant",
+      "Alerts volunteer coordinator"
+    ]
+  },
+  {
+    "name": "backend/submit_contact.php",
+    "type": "API Endpoint",
+    "description": "Manages contact form submissions",
+    "features": [
+      "Validates contact information",
+      "Stores messages in database",
+      "Sends acknowledgment email",
+      "Notifies admin with full message"
+    ]
+  },
+  {
+    "name": "js/form-handler.js",
+    "type": "Frontend JavaScript",
+    "description": "AJAX form submission handler and client-side validation",
+    "features": [
+      "Submits forms asynchronously",
+      "Handles success/error responses",
+      "Shows success messages",
+      "Error notifications with toast",
+      "Tracks donation amount selection"
+    ]
+  },
+  {
+    "name": "database/database.sql",
+    "type": "Database Schema",
+    "description": "Complete database structure with all tables and indexes",
+    "tables": [
+      "donations - donation records with amounts and causes",
+      "volunteers - volunteer applications with status tracking",
+      "contact_messages - inquiry submissions with read status",
+      "admin_users - administrator accounts with roles",
+      "donation_stats - aggregate statistics"
+    ]
+  },
+  {
+    "name": "database/setup.php",
+    "type": "Setup Wizard",
+    "description": "Interactive database initialization and configuration",
+    "steps": [
+      "Creates database if not exists",
+      "Executes all SQL statements",
+      "Initializes admin user",
+      "Sets up donation statistics",
+      "Shows success/failure report"
+    ]
+  },
+  {
+    "name": "backend/test-connection.php",
+    "type": "Diagnostic Tool",
+    "description": "Tests database connectivity and table existence",
+    "checks": [
+      "Database connection status",
+      "All required tables",
+      "Row counts per table",
+      "Current configuration values"
+    ]
+  },
+  {
+    "name": "backend/export.php",
+    "type": "Data Export Utility",
+    "description": "Exports submission data in CSV or JSON format",
+    "formats": [
+      "CSV - Excel/Spreadsheet compatible",
+      "JSON - Web/Database integration",
+      "Includes all fields from each submission"
+    ]
+  },
+  {
+    "name": "README.md",
+    "type": "Documentation",
+    "description": "Complete user and setup guide",
+    "sections": [
+      "Installation instructions",
+      "Database configuration",
+      "Form customization",
+      "Email setup",
+      "Troubleshooting"
+    ]
+  },
+  {
+    "name": "QUICKSTART.md",
+    "type": "Quick Reference",
+    "description": "5-minute setup and basic customization",
+    "includes": [
+      "Copy/paste setup steps",
+      "Form testing guidelines",
+      "Color and text customization",
+      "Common troubleshooting"
+    ]
+  },
+  {
+    "name": "API.md",
+    "type": "Developer Documentation",
+    "description": "Technical reference for APIs and customization",
+    "covers": [
+      "REST endpoint documentation",
+      "Database schema details",
+      "Helper functions",
+      "Integration examples",
+      "Security practices"
+    ]
+  },
+  {
+    "name": ".htaccess",
+    "type": "Web Server Config",
+    "description": "Apache configuration for routing and security",
+    "features": [
+      "GZIP compression",
+      "Browser caching",
+      "Security headers",
+      "Directory protection",
+      "Clean URL routing"
+    ]
+  }
+]
